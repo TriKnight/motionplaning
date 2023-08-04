@@ -102,7 +102,7 @@ Following is the Depth-first search code ```DFS_simple.py``` we have the solutio
 
 ---
 ## 3. RRT Original Algorithms
-![RRT Original Algorithms](./fig/RRT_algorithms.png)
+![RRT Original Algorithms](../fig/RRT_algorithms.png)
 
 The RRT code Pseudocode:
 ```
