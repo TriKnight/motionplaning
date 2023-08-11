@@ -136,13 +136,14 @@ flowchart TB
     F -- Yes --> G[retraceRRTPath]
     F -- No --> I
     G --> J((End))
- 
-
 ```
-
+---
+## 4. RRT* Original Algorithms
+![RRT* Algorithms](../fig/rrtstar.png)
 ## References
 1. Depth First Search (DFS) Explained: Algorithm, Examples, and Code [link](https://www.youtube.com/watch?v=PMMc4VsIacU)
 2. Depth First Search Wiki [link](https://en.wikipedia.org/wiki/Depth-first_search)
 3. Depth First Search (DFS) in Python [link](https://www.scaler.com/topics/dfs-python/)
 4. Udemy course the introduction sampling based motion planning algorithms [link](https://www.udemy.com/course/an-introduction-to-sampling-based-motion-planning-algorithms/l)
 5. TreeNode - Nonlinear Data Structure [Link](https://www.codecademy.com/learn/nonlinear-data-structures-python/modules/trees-python/cheatsheet)
+6. Useful Python Implementation of Rapidly-exploring random tree (RRT) Path-planning Algorithm from Fanjin Zeng [link](https://gist.github.com/Fnjn/58e5eaa27a3dc004c3526ea82a92de80)

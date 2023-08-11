@@ -4,13 +4,21 @@ import random
 
 from matplotlib.pyplot import rcParams
 class treeNode():
+    """
+    Add the point to the nearest node and add goal when reached
+    :param locationX: float, X position of node
+    :param locationY: float, Y position of node
+    :param children: array, child vertex
+    :param parent: array, parent vertex
+    """
     def __init__(self, locationX, locationY):
         self.locationX = locationX
         self.locationY = locationY
         self.children =[]   # children list
-        self.parrent = None # parent node reference
+        self.parent = None # parent node reference
 
 class RRT_Algorithms():
+    
     def __init__(self, start, goal, numIter, grid, stepSize):
         self.randomTree = treeNode(start[0], start[1])
         self.goal = treeNode(goal[0], goal[1])
@@ -23,12 +31,7 @@ class RRT_Algorithms():
         self.numWaypoints =0                 # number of waypoints
         self.Waypoints = []                   #the waypoints
 
-    """
-    Add the point to the nearest node and add goal when reached
-    :param tree: int, tree to which to add vertex
-    :param child: tuple, child vertex
-    :param parent: tuple, parent vertex
-    """
+  
     def addChild(self, locationX, locationY):
         if (locationX == self.goal.locationX):
             self.nearestNode.children.append(self.goal)
