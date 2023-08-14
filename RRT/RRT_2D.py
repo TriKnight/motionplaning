@@ -94,13 +94,14 @@ def plot(G, path=None):
     py = [y for x, y in G.vertices]
     fig, ax = plt.subplots()
 
-    ax.scatter(px, py, c='black', alpha=0.0) # add alpha=0 --> node transparent
-    ax.scatter(G.startpos[0], G.startpos[1], c='red')
-    ax.scatter(G.endpos[0], G.endpos[1], c='blue')
+    ax.scatter(px, py, c='black', alpha=0.2) # add alpha=0 --> node transparent
+    ax.scatter(G.startpos[0], G.startpos[1], c='yellow')
+    ax.scatter(G.endpos[0], G.endpos[1], c='blue' )
     lines = [(G.vertices[edge[0]], G.vertices[edge[1]]) for edge in G.edges]
-    lc = mc.LineCollection(lines, colors='blue', linewidths=0.3)
+    lc = mc.LineCollection(lines, colors='green', linewidths=0.3)
     ax.add_collection(lc)
-
+    ax.set_xlabel('X Position')
+    ax.set_ylabel('Y Position')
     if path is not None:
         paths = [(path[i], path[i+1]) for i in range(len(path)-1)]
         lc2 = mc.LineCollection(paths, colors='red', linewidths=3)
@@ -155,7 +156,7 @@ def dijkstra(G):
     path.appendleft(G.vertices[curNode])
     return list(path)
 
-def RRT(startpos, endpos, n_iter, radius, stepSize):
+def RRT(startpos, endpos, n_iter, radius, goal_radius, stepSize):
     G = Graph(startpos, endpos)
     for _ in range(n_iter):
         # 1. Sample a random Vertice
@@ -174,7 +175,7 @@ def RRT(startpos, endpos, n_iter, radius, stepSize):
 
         # 5. check if the point reach the goal
         dist = distance(newvex, G.endpos)
-        if dist < 2 * radius:
+        if dist < 2 * goal_radius:
             endidx = G.add_vertex(G.endpos)
             G.add_edge(newidx, endidx, dist)
             G.success = True
@@ -272,9 +273,9 @@ if __name__ == '__main__':
     n_iter = 1000
     radius = 2.0 # radius of the new vertex for rewire step
     goal_radius = 0.1 # check the goal radius 
-    stepSize = 0.3 #the default stepSize when steer
+    stepSize = 2.0 #the default stepSize when steer
 
-    G1 = RRT_star(startpos, endpos, n_iter, radius, goal_radius, stepSize)
+    G1 = RRT(startpos, endpos, n_iter, radius, goal_radius, stepSize)
     print(G1.success)
     if G1.success:
         path = dijkstra(G1)
